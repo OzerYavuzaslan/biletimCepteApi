@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface IUserService {
     List<UserResponse> listUsers();
+    UserResponse registerUser(RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException;
     UpdateResponse updateUser(RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException;
 }

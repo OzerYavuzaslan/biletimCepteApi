@@ -8,7 +8,7 @@ public final class Constants {
     public static final String USER_ALREADY_IN_THE_SYSTEM = "Email of that user is already in the system! Use different email to register.";
     public static final String VOYAGE_NOT_FOUND = " related voyage is not found!";
     public static final String LOGIN_SUCCESSFUL = "Successfully logged in";
-    public static final String REGISTER_SUCCESSFUL = "Successfully created";
+    public static final String REGISTER_SUCCESSFUL = "User has been successfully registered";
     public static final String LOGIN_NOT_SUCCESSFUL = "Email or password is incorrect";
     public static final String REGISTER_NOT_SUCCESSFUL = "This email is already in the system. Please use different email than this:  ";
     public static final String USER_FOUND_AND_UPDATED = "User is found, and updated successfully.";
@@ -22,7 +22,7 @@ public final class Constants {
     public static final String TICKET = " tickets!";
     public static final String LIMITED_MAX_TICKET_FOR_INDIVIDUALS = "Individual users can buy at MAX ";
     public static final String LIMITED_MAX_MALE_PASSENGERS = "Individual male users can buy at MAX ";
-    public static final String LIMITED_MAX_TICKET_FOR_CORPORATE = "CORPORATE users can vuy at MAX ";
+    public static final String LIMITED_MAX_TICKET_FOR_CORPORATE = "CORPORATE users can buy at MAX ";
     public static final String BOOKING_PAYMENT_ALREADY_DONE = "Passenger has already paid the payment!";
     public static final String PAYMENT_SUCCESSFUL = "The payment is successfully done. Have a safe journey: ";
     public static final String ROLE_NOT_FOUND = "User role not found!";
