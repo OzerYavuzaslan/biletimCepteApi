@@ -120,7 +120,7 @@ public class BookingService implements IBookingService{
 
     private User getUser(BookingRequest bookingRequest){
         return getIUserRepository()
-                .selectByEmail(bookingRequest.getPassengerEmail(), "ADMIN")
+                .selectByEmail(bookingRequest.getPassengerEmail())
                 .orElseThrow(() ->
                         new UserNotFoundException(USER_NOT_FOUND));
     }

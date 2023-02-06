@@ -25,6 +25,9 @@ public final class Constants {
     public static final String LIMITED_MAX_TICKET_FOR_CORPORATE = "CORPORATE users can vuy at MAX ";
     public static final String BOOKING_PAYMENT_ALREADY_DONE = "Passenger has already paid the payment!";
     public static final String PAYMENT_SUCCESSFUL = "The payment is successfully done. Have a safe journey: ";
+    public static final String ROLE_NOT_FOUND = "User role not found!";
+    public static final String BAD_CREDENTIAL = "Invalid username and password!";
+    public static final String SPRING_SECURITY_LAST_EXCEPTION = "SPRING_SECURITY_LAST_EXCEPTION";
 
     private Constants(){
     }

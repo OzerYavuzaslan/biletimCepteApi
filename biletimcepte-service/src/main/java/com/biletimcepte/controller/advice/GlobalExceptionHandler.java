@@ -100,4 +100,11 @@ public class GlobalExceptionHandler {
     String PaymentAlreadyDoneException(PaymentAlreadyDoneException exception) {
         return exception.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(RoleNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String RoleNotFoundException(RoleNotFoundException exception) {
+        return exception.getMessage();
+    }
 }

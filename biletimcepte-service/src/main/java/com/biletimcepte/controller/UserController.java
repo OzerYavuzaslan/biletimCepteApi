@@ -1,12 +1,10 @@
 package com.biletimcepte.controller;
 
-import com.biletimcepte.dto.request.LoginRequest;
 import com.biletimcepte.dto.request.RegisterRequest;
-import com.biletimcepte.dto.response.UserResponse;
 import com.biletimcepte.dto.response.UpdateResponse;
+import com.biletimcepte.dto.response.UserResponse;
 import com.biletimcepte.service.IUserService;
 import lombok.Data;
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,20 +24,17 @@ public class UserController {
         setIUserService(iUserService);
     }
 
-    @PostMapping
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException, PSQLException {
-        return ResponseEntity.ok(getIUserService().registerUser(registerRequest));
-    }
-
     @GetMapping
     public ResponseEntity<List<UserResponse>> listOfUsers(){
         return ResponseEntity.ok(getIUserService().listUsers());
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        return ResponseEntity.ok(getIUserService().login(loginRequest));
+/*
+    @PostMapping
+    public ResponseEntity<UserResponse> register(@RequestBody RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException, PSQLException {
+        return ResponseEntity.ok(getIUserService().registerUser(registerRequest));
     }
+*/
 
     @PutMapping
     public ResponseEntity<UpdateResponse> update(@RequestBody RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {

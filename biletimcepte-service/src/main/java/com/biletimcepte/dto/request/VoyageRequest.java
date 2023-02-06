@@ -19,7 +19,6 @@ public class VoyageRequest {
     private String fromCity;
     private String toCity;
     private TravelType travelType;
-    private String addUserEmail;
     private double pricePerTicket;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -10,12 +10,11 @@ import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
-    @Query(nativeQuery = true, value = "select * from users where email = :email and user_status = :userstatus order by id")
-    Optional<User> checkTheUserAdmin(String email, String userstatus);
+    Optional<User> findByUsernameIgnoreCase(String username);
 
-    @Query(nativeQuery = true, value = "select * from users where email = :email and user_status <> :userstatus order by id")
-    Optional<User> selectByEmail(String email, String userstatus);
+    @Query(nativeQuery = true, value = "select * from users where email = :email order by id")
+    Optional<User> selectByEmail(String email);
 
-    @Query(nativeQuery = true, value = "select * from users where user_status <> :userstatus order by id")
-    List<User> getAllUsers(String userstatus);
+    @Query(nativeQuery = true, value = "select * from users order by id")
+    List<User> getAllUsers();
 }
