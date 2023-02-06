@@ -21,7 +21,6 @@ import java.util.List;
         @Index(name = "toCity_index", columnList = "toCity"),
         @Index(name = "fromCity_index", columnList = "fromCity"),
         @Index(name = "voyageTime_index", columnList = "voyageDateTime"),
-        @Index(name = "userid_index", columnList = "user_id"),
         @Index(name = "voyage_status_index", columnList = "voyageStatus"),
         @Index(name = "composite_index1", columnList = "availableSeats, voyageDateTime, toCity, voyageStatus"),
         @Index(name = "composite_index2", columnList = "availableSeats, voyageDateTime, fromCity, voyageStatus"),
@@ -45,6 +44,7 @@ public class Voyage {
     private TravelType travelType;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "voyage", cascade = CascadeType.ALL)
     private List<Ticket> ticketList;
+
     @Enumerated(EnumType.STRING)
     private VoyageStatus voyageStatus = VoyageStatus.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -55,9 +55,6 @@ public class Voyage {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updateDateTime;
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
 
     public int getId() {
         return id;
@@ -137,14 +134,6 @@ public class Voyage {
 
     public void setAddDateTime(LocalDateTime addDateTime) {
         this.addDateTime = addDateTime;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public double getPricePerTicket() {

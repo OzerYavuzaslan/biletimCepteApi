@@ -3,7 +3,6 @@ package com.biletimcepte.converter;
 import com.biletimcepte.dto.request.VoyageRequest;
 import com.biletimcepte.dto.response.VoyageResponse;
 import com.biletimcepte.dto.response.VoyageTotalTicketsResponse;
-import com.biletimcepte.model.User;
 import com.biletimcepte.model.Voyage;
 import org.springframework.stereotype.Component;
 
@@ -28,14 +27,13 @@ public class VoyageConverter {
         return response;
     }
 
-    public Voyage convert(VoyageRequest voyageRequest, int seatNumbers, User user){
+    public Voyage convert(VoyageRequest voyageRequest, int seatNumbers){
         Voyage voyage = new Voyage();
 
         voyage.setTravelType(voyageRequest.getTravelType());
         voyage.setAvailableSeats(seatNumbers);
         voyage.setVoyageDateTime(voyageRequest.getVoyageDateTime());
         voyage.setAddDateTime(LocalDateTime.now());
-        voyage.setUser(user);
         voyage.setFromCity(voyageRequest.getFromCity());
         voyage.setToCity(voyageRequest.getToCity());
         voyage.setPricePerTicket(voyageRequest.getPricePerTicket());

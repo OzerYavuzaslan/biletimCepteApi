@@ -80,7 +80,7 @@ public class TicketService implements ITicketService{
     public List<TicketResponse> getAllByPassengerEmail(String eMail) {
         return getTicketConverter()
                 .convert(getIUserRepository()
-                        .selectByEmail(eMail, "ADMIN")
+                        .selectByEmail(eMail)
                         .orElseThrow(() ->
                                 new UserNotFoundException(USER_NOT_FOUND))
                         .getBookingList()

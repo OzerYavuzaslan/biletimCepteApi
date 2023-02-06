@@ -1,6 +1,5 @@
 package com.biletimcepte.controller;
 
-import com.biletimcepte.dto.request.VoyageAdminUserRequest;
 import com.biletimcepte.dto.request.VoyageRequest;
 import com.biletimcepte.dto.response.VoyageResponse;
 import com.biletimcepte.dto.response.VoyageTotalTicketsResponse;
@@ -28,13 +27,13 @@ public class VoyageController {
     }
 
     @PutMapping("/setpassive/{id}")
-    public VoyageResponse setPassive(@PathVariable int id, @RequestBody VoyageAdminUserRequest voyageAdminUserRequest){
-        return getIVoyageService().setVoyagePassive(id, voyageAdminUserRequest);
+    public VoyageResponse setPassive(@PathVariable int id){
+        return getIVoyageService().setVoyagePassive(id);
     }
 
     @DeleteMapping("/{id}")
-    public VoyageResponse delete(@PathVariable int id, @RequestBody VoyageAdminUserRequest voyageAdminUserRequest){
-        return getIVoyageService().deleteVoyage(id, voyageAdminUserRequest);
+    public VoyageResponse delete(@PathVariable int id){
+        return getIVoyageService().deleteVoyage(id);
     }
 
     @GetMapping("/totalprice/{id}")
@@ -53,8 +52,8 @@ public class VoyageController {
     }
 
     @PostMapping("/totalsoldtickets/{id}")
-    public VoyageTotalTicketsResponse totalSoldTickets(@PathVariable int id, @RequestBody VoyageAdminUserRequest voyageAdminUserRequest){
-        return getIVoyageService().getTotalSoldTickets(id, voyageAdminUserRequest);
+    public VoyageTotalTicketsResponse totalSoldTickets(@PathVariable int id){
+        return getIVoyageService().getTotalSoldTickets(id);
     }
 
     @PostMapping("/findvoyages/{startDateTime}/{endDateTime}/{travelType}/{fromCity}/{toCity}")
