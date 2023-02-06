@@ -5,6 +5,7 @@ import com.biletimcepte.dto.response.UpdateResponse;
 import com.biletimcepte.dto.response.UserResponse;
 import com.biletimcepte.service.IUserService;
 import lombok.Data;
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +30,10 @@ public class UserController {
         return ResponseEntity.ok(getIUserService().listUsers());
     }
 
-/*
     @PostMapping
     public ResponseEntity<UserResponse> register(@RequestBody RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException, PSQLException {
         return ResponseEntity.ok(getIUserService().registerUser(registerRequest));
     }
-*/
 
     @PutMapping
     public ResponseEntity<UpdateResponse> update(@RequestBody RegisterRequest registerRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {

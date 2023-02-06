@@ -5,6 +5,8 @@ import com.biletimcepte.dto.request.NotificationRequest;
 import com.biletimcepte.dto.request.RegisterRequest;
 import com.biletimcepte.dto.response.UpdateResponse;
 import com.biletimcepte.dto.response.UserResponse;
+import com.biletimcepte.exception.RoleNotFoundException;
+import com.biletimcepte.model.Role;
 import com.biletimcepte.model.User;
 import com.biletimcepte.repository.IRoleRepository;
 import com.biletimcepte.repository.IUserRepository;
@@ -15,11 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 
-import static com.biletimcepte.util.Constants.USER_FOUND_AND_UPDATED;
-import static com.biletimcepte.util.Constants.USER_NOT_FOUND;
+import static com.biletimcepte.util.Constants.*;
 
 @Data
 @Service
@@ -54,6 +57,7 @@ public class UserService implements IUserService {
         if (isRecordExisted.isPresent()) {
             User specificUser = isRecordExisted.get();
             updateMessage = USER_FOUND_AND_UPDATED;
+        //    String hashedPassword = PasswordUtil.preparePasswordHash(registerRequest.getPassword(), registerRequest.getEmail());
             String hashedPassword = getPasswordEncoder().encode(registerRequest.getPassword());
             getIUserRepository().save(getUserConverter().convert(specificUser, registerRequest, hashedPassword));
             getRabbitTemplate().convertAndSend("notification", new NotificationRequest("User successfully updated with email: " + registerRequest.getEmail(), "EMAIL", registerRequest.getEmail()));
@@ -63,5 +67,19 @@ public class UserService implements IUserService {
 
         LoggerUtilization.getLogger().log(Level.INFO, "UserService -> updateUser : " + registerRequest.getEmail());
         return getUserConverter().convert(updateMessage, registerRequest);
+    }
+
+    @Override
+    public UserResponse registerUser(RegisterRequest registerRequest) {
+        User user = getUserConverter().convert(registerRequest);
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(getIRoleRepository().findByRoleName("USER").orElseThrow(() -> new RoleNotFoundException(ROLE_NOT_FOUND)));
+        user.setRoles(roles);
+        getIUserRepository().save(user);
+        LoggerUtilization.getLogger().log(Level.INFO, "UserService -> registerUser: " + registerRequest.getEmail());
+        getRabbitTemplate().convertAndSend("notification", new NotificationRequest(REGISTER_SUCCESSFUL + ": " + registerRequest.getEmail(), "EMAIL", registerRequest.getEmail()));
+
+        return getUserConverter().convert(user);
     }
 }
